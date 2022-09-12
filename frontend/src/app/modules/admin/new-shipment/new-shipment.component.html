@@ -1,0 +1,106 @@
+
+<div class="new-shipment">
+    <mat-horizontal-stepper [labelPosition]="'bottom'" >
+        <mat-step errorMessage="Shipment is required." [stepControl]="shipmentForm">
+            <ng-template matStepLabel>
+                <p>Add Shipment</p>
+            </ng-template>
+            <div class="stepper-1-content">
+                <form [formGroup]="shipmentForm" (ngSubmit)="feeCheck()">
+                   <!-- <label [ngStyle]="{fontSize: '20px',fontWeight:'bold',paddingTop:'10px'}">What are you sending? </label>-->
+                    <p *ngIf="!shipmentForm.get('shipmentType')?.valid && shipmentForm.get('shipmentType')?.touched" [ngStyle]="{color: 'red'}">
+                        Please enter a valid email</p>
+                    <div [ngStyle]="{width: '100%',display:'flex','align-items':'center','justify-content':'space-between'}">
+                        
+                        <mat-radio-group formControlName="shipmentType">
+                            <mat-radio-button value="fragile" class="shipment-type-radio">
+                                <mat-card>
+                                    <mat-icon>wine_bar</mat-icon>
+                                    <p class="shipment-card-name">Fragile</p>
+                                </mat-card>
+                            </mat-radio-button>
+                            <mat-radio-button value="documents">
+                                <mat-card>
+                                    <mat-icon>description</mat-icon>
+                                    <p class="shipment-card-name">Documents</p>
+                                </mat-card>
+                            </mat-radio-button>
+                            <mat-radio-button value="food">
+                                <mat-card>
+                                    <mat-icon>restaurant</mat-icon>
+                                    <p class="shipment-card-name">Food</p>
+                                </mat-card>
+                            </mat-radio-button>
+                          </mat-radio-group>
+                          
+                        </div>
+                        <div [ngStyle]="{display:'flex',flexDirection:'column',marginTop:'20px'}">
+                        <mat-form-field appearance="outline">
+                            <p *ngIf="!shipmentForm.get('fromLocation')?.valid && shipmentForm.get('fromLocation')?.touched" [ngStyle]="{color: 'red'}">
+                                Please enter a valid location</p>
+                            <input matInput type='text' placeholder='FromLocation'formControlName="fromLocation">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <p *ngIf="!shipmentForm.get('toLocation')?.valid && shipmentForm.get('toLocation')?.touched" [ngStyle]="{color: 'red'}">
+                                Please enter a valid location</p>
+                            <input matInput type='text' placeholder='ToLocation'formControlName="toLocation">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <p *ngIf="!shipmentForm.get('weight')?.valid && shipmentForm.get('weight')?.touched" [ngStyle]="{color: 'red'}">
+                                Please enter a valid weight</p>
+                            <input matInput type='number' placeholder='Weight'formControlName="weight">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <p *ngIf="!shipmentForm.get('toEmail')?.valid && shipmentForm.get('toEmail')?.touched" [ngStyle]="{color: 'red'}">
+                                Please enter a valid email</p>
+                            <input matInput type='email' placeholder='ToEmail'formControlName="toEmail">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <p *ngIf="!shipmentForm.get('FromEmail')?.valid && shipmentForm.get('FromEmail')?.touched" [ngStyle]="{color: 'red'}">
+                                Please enter a valid email</p>
+                            <input matInput type='email' placeholder='FromEmail'formControlName="FromEmail">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <p *ngIf="!shipmentForm.get('status')?.valid && shipmentForm.get('status')?.touched" [ngStyle]="{color: 'red'}">
+                                Please enter the status</p>
+                            <input matInput type='text' placeholder='Status'formControlName="status">
+                        </mat-form-field>
+
+                        
+                    </div>
+                    <button matStepperNext type="submit" class="fee-check">Fee Check</button>
+                </form>
+                
+            </div>
+        </mat-step>
+        <mat-step errorMessage="Fee Payment is required.">
+            <ng-template matStepLabel>
+                <p>Fee Check</p>
+            </ng-template>
+            <div class="stepper-2-content">
+                <div class="fee-price">
+                    Your parcel fee is {{20 | currency:'KSH'}}
+                </div>
+                <div class="lipa-na-mpesa">
+                    <button>Lipa Na Mpesa</button>
+                </div>
+                <button class="next" matStepperNext>Next</button>
+                <button class="back" matStepperPrevious>Back</button>
+            </div>
+        </mat-step>
+        <mat-step errorMessage="Please Click the Done button to complete.">
+            <ng-template matStepLabel>
+                <p>Done</p>
+            </ng-template>
+            <div class="stepper-3-content">
+                <div class="done">
+                    <div class="done-div" [ngStyle]="{backgroundColor: 'black',padding:'10px',textAlign: 'center'}">
+                        <mat-icon class='hero-card-icon' aria-label="done-icon" [ngStyle]="{backgroundColor: 'white',borderRadius:'50%'}">done</mat-icon>
+                        <p [ngStyle]="{color: 'white'}">Your parcel is now waiting in lobby</p>
+                    </div>
+                </div>
+                <button class='back'matStepperPrevious>Back</button>
+            </div>
+        </mat-step>
+    </mat-horizontal-stepper>
+</div>

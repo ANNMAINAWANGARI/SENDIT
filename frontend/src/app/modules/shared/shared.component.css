@@ -1,0 +1,58 @@
+.header-wrapper{
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    width:100%;
+    height:20vh;
+    background-color:orange;
+    padding:10px;
+}
+.header-logo{
+    display:flex;
+    align-items:center;
+}
+.header-logo >span{
+    font-size:40px;
+    font-family:'Times New Roman', Times, serif
+}
+.header-logo-1{
+    color:white;
+}
+.header-logo-2{
+    color:blue;
+}
+.header-links{
+    display:flex;
+    list-style: none;
+    gap:10px;
+}
+.header-buttons{
+    display:flex;
+    align-items: center;
+    gap:10px;
+}
+.header-buttons >button{
+    padding:10px;
+    border-radius: 5px;
+    border:none;
+    cursor:pointer;
+    
+}
+.login-button{
+    border-color:white;
+    background-color:white;
+}
+.register-button{
+    color:orange;
+    background-color: white;
+}
+.router-link-active{
+    text-decoration:underline;
+    color:white;
+    font-size:20px;
+}
+.link{
+    
+    cursor:pointer;
+    font-size:18px;
+}

@@ -1,0 +1,21 @@
+<form class="signup-form">
+    <div class="signup-form-inner-div">
+    <div class="signup-form-header">
+        <h3>REGISTER</h3>
+        <span>X</span>
+    </div>
+    <p class="signup-form-input-container">
+        <input type="text" name="username" placeholder='username'/>
+    </p>
+    <p class="signup-form-input-container">
+        <input type="email" name="email" placeholder='email'/>
+    </p>
+    <p class="signup-form-input-container">
+        <input type="password" name="password" placeholder='password'/>
+    </p>
+    <button type="submit" class="signup-submit">REGISTER</button>
+    <p [ngStyle]="{'font-size': '18px','text-align':'left'}">Have an account?<span [ngStyle]="{'color': 'orange','cursor':'pointer'}">Login</span></p>
+    <button class="google-signup"><img src='../../../../assets/google.png' alt='google-image' class='google-image'/>Sign up with Google</button>
+    
+    </div>
+</form>

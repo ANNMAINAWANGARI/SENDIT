@@ -1,0 +1,25 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Padauk:wght@400;700&display=swap');
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: 'Padauk', sans-serif;
+}
+html, body { height: 100%; 
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none; }
+    body::-webkit-scrollbar { 
+        display: none;  /* Safari and Chrome */
+    }
+/*body { margin: 0; font-family: Roboto, "Padauk", sans-serif; }*/
+.mat-step-header .mat-step-icon-selected {
+    background-color:orange;
+    color: white;
+}
+.mat-step-header .mat-step-icon-state-edit{
+    background-color: grey;
+}
+.mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick{
+    color:red;
+}

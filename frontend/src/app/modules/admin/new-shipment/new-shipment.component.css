@@ -1,0 +1,58 @@
+.new-shipment{
+    max-width:90%;
+    margin:0 auto;
+}
+
+.mat-radio-group{
+ 
+ width:100%;
+ display:flex;
+ align-items: center;
+ justify-content: space-around;
+
+}
+.mat-card{
+    background-color: black;
+    color:orange;
+}
+.fee-check{
+    background-color: orange;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.fee-price{
+    background-color: black;
+    color:white;
+    padding:10px;
+}
+.lipa-na-mpesa{
+    margin-top:20px;
+    margin-bottom:20px;
+    display:flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.lipa-na-mpesa >button{
+    background-color: green;
+    color:white;
+    padding:10px;
+    border-radius: 5px;
+    border:none;
+    cursor:pointer;
+}
+.next,.back{
+    padding:5px;
+    border-radius: 5px;
+    border:none;
+    margin:5px;
+    cursor:pointer;
+}
+.done{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    margin:10px 0;
+}

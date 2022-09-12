@@ -1,0 +1,74 @@
+.signup-form{
+    height:80vh;
+    display:flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+    
+    
+}
+.signup-form-inner-div{
+    width:300px;
+    display:flex;
+    flex-direction: column;
+    gap:25px;
+    border:1px solid black;
+    padding:10px;
+    background-color: rgb(244, 246, 246);
+}
+.signup-form-header{
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    padding:10px;
+}
+.signup-form-header >span{
+    cursor:pointer;
+    background-color: orange;
+    color:black;
+    border-radius: 50%;
+    padding:5px;
+    height:30px;
+    width:30px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    margin:0;
+}
+.signup-form-header >h3{
+    margin:0;
+}
+.signup-form-input-container{
+    display:flex;
+    align-items: center;
+    width:100%;
+}
+.signup-form-input-container > input{ 
+    flex:1;
+    padding:5px;
+}
+.signup-submit{
+    border:none; 
+    padding:10px;
+    border-radius: 5px;
+    color:black;
+    background-color: orange;
+}
+.google-image{
+    height:30px;
+    
+}
+.google-signup{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border:none;
+    border-radius:5px;
+    padding:5px;
+    gap:10px;
+    font-size:20px;
+    cursor:pointer;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}

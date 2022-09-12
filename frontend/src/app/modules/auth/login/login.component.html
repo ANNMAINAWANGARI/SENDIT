@@ -1,0 +1,18 @@
+<form class="login-form">
+    <div class="login-form-inner-div">
+    <div class="login-form-header">
+        <h3>LOGIN</h3>
+        <span>X</span>
+    </div>
+    <p class="login-form-input-container">
+        <input type="email" name="email" placeholder='email'/>
+    </p>
+    <p class="login-form-input-container">
+        <input type="password" name="password" placeholder='password'/>
+    </p>
+    <button type="submit" class="login-submit">LOGIN</button>
+    <p [ngStyle]="{'font-size': '18px','text-align':'left'}">New Here?<span [ngStyle]="{'color': 'orange','cursor':'pointer'}">Register</span></p>
+    <button class="google-login"><img src='../../../../assets/google.png' alt='google-image' class='google-image'/>Sign in with Google</button>
+    
+    </div>
+</form>
