@@ -15,13 +15,15 @@ interface ExtendedRequest extends Request{
         parcel_origin_phone:string
         parcel_weight:number
         parcel_status:number
+        price:number
+        user_id:string
 
     }
 }
-
+let price:number;
 export const checkParcelFee=async(req:ExtendedRequest,res:Response)=>{
     try{
-        let price:number;
+        
         const{parcel_weight}=req.body
         let checkFee=new Promise(function(resolve,reject){
             if(Number(parcel_weight)>=0 && Number(parcel_weight)<=10){
@@ -47,18 +49,16 @@ export const checkParcelFee=async(req:ExtendedRequest,res:Response)=>{
     }catch(err){res.json(err)}
 }
 
-
 export const addParcel=async(req:ExtendedRequest,res:Response)=>{
     try {
-        
         const id=uid();
         const parcel_id=id;
-        const{parcel_type,parcel_destination,parcel_origin,parcel_destination_phone,parcel_origin_phone,parcel_weight,parcel_status}=req.body
+        const{parcel_type,parcel_destination,parcel_origin,parcel_destination_phone,parcel_origin_phone,parcel_weight,parcel_status,user_id}=req.body
         
     
         
         
-        db.exec('insertUpdateParcel',{ parcel_id,parcel_type,parcel_destination,parcel_origin,parcel_destination_phone,parcel_origin_phone,parcel_weight,parcel_status})
+        db.exec('insertUpdateParcel',{ parcel_id,parcel_type,parcel_destination,parcel_origin,parcel_destination_phone,parcel_origin_phone,parcel_weight,parcel_status,price,user_id})
         res.status(201).json({message:"Parcel Added Successfully!!"})
     } catch (error:any) {
         res.json({error})
