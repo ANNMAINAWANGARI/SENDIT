@@ -1,6 +1,7 @@
 import express ,{json,Request,Response,NextFunction}from 'express';
 import cors from 'cors';
 import userRouter from './Routes/userRoutes';
+import routerParcels from './Routes/parcelRoutes';
 
 const app=express();
 app.use(json());
@@ -9,6 +10,7 @@ const PORT = 8800;
 
 
 app.use('/user',userRouter)
+app.use('/parcels',routerParcels)
 
 app.use((err:Error,req:Request,res:Response,next:NextFunction)=>{
     res.json({message:err.message})
