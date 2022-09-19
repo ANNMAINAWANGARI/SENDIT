@@ -1,5 +1,6 @@
 import { Request, RequestHandler, Response } from "express"
 import { number } from "joi"
+import { ParcelSchema } from "../HelperFunctions/parcelValidator"
 import {v4 as uid}  from 'uuid'
 import Connection from "../HelperFunctions/dbHelpers"
 
@@ -14,7 +15,7 @@ interface ExtendedRequest extends Request{
         parcel_destination_phone:string
         parcel_origin_phone:string
         parcel_weight:number
-        parcel_status:number
+        parcel_status:string
         price:number
         user_id:string
 
@@ -25,6 +26,10 @@ export const checkParcelFee=async(req:ExtendedRequest,res:Response)=>{
     try{
         
         const{parcel_weight}=req.body
+        const {error , value}= ParcelSchema.validate(req.body)
+            if(error){
+                return res.json({error:error.details[0].message})
+            }
         let checkFee=new Promise(function(resolve,reject){
             if(Number(parcel_weight)>=0 && Number(parcel_weight)<=10){
               price = 1;
@@ -54,7 +59,10 @@ export const addParcel=async(req:ExtendedRequest,res:Response)=>{
         const id=uid();
         const parcel_id=id;
         const{parcel_type,parcel_destination,parcel_origin,parcel_destination_phone,parcel_origin_phone,parcel_weight,parcel_status,user_id}=req.body
-        
+        const {error , value}= ParcelSchema.validate(req.body)
+            if(error){
+                return res.json({error:error.details[0].message})
+            }
     
         
         
@@ -127,5 +135,28 @@ export const getReceiverParcels:RequestHandler=async(req,res)=>{
     res.json({error})
         
     }
+    
+    }
+
+    //soft delete a parcel
+    export const softDeleteParcel:RequestHandler<{parcel_id:string}>=async(req,res)=>{
+        try {
+            let parcel_id=req.params.parcel_id
+            const {recordset}=await db.exec('getParcel',{parcel_id})
+            
+            
+            if(!recordset[0]){
+                res.status(404).send("Parcel Not Found!")
+            }else{
+                await db.exec('deleteParcel',{parcel_id})
+                res.status(200).json({message:'Parcel Deleted Successfully!'})
+    
+            }
+    
+            
+        } catch (error) {
+            res.status(400).send("An Error Occurred!")
+            
+        }
     
     }
