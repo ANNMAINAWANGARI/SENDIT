@@ -13,11 +13,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/buffers": "^0.1.31",
     "@types/ejs": "^3.1.1",
     "@types/express": "^4.17.14",
     "@types/mssql": "^8.1.1",
     "@types/node-cron": "^3.0.4",
     "@types/nodemailer": "^6.4.6",
+    "buffers": "^0.1.1",
     "concurrently": "^7.4.0",
     "dotenv": "^16.0.2",
     "ejs": "^3.1.8",

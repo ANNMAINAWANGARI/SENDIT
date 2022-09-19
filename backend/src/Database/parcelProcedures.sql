@@ -87,3 +87,11 @@
 --WHERE parcel_origin_phone=@parcel_origin_phone AND is_deleted=0;
 --END
 /*sender parcels*/
+
+/*delete parcel*/
+-- CREATE OR ALTER PROCEDURE deleteParcel(@parcel_id VARCHAR (200))
+--AS
+--BEGIN
+--UPDATE ParcelsTable SET is_deleted='1'
+--WHERE parcel_id=@parcel_id
+--END
