@@ -34,7 +34,7 @@ for(let parcel of parcels){
         from:process.env.TWILIO_NUMBER,
         to:`+254${parcel.parcel_destination_phone}`,
         body:`
-        Hello ${parcel.firstName}, you have received a parcel from ${parcel.parcel_origin_phone} which is currently in ${parcel.parcel_status}. You will receive an update when the parcel reaches its destination.`
+        Hello ${parcel.firstName}, you have received a parcel from ${parcel.parcel_origin_phone} which is currently ${parcel.parcel_status}. You will receive an update when the parcel reaches its destination.`
     })
     .then(()=> pool.request().query(`UPDATE ParcelsTable SET destination_phone_issent='yes' WHERE parcel_id='${parcel.parcel_id}'`))
     .catch((err:Error)=>console.log(err))

@@ -36,12 +36,12 @@ SELECT * FROM ParcelsTable INNER JOIN users ON ParcelsTable.user_id=users.id WHE
             to:parcel.email,
             subject:"Parcel Status Update",
             html:data,
-            attachments:[
+           /* attachments:[
                 {
                     //filename:'sendIT.text',
                     //content:`Welcome ${parcel.firstName},you have successfully created an account`
                 }
-            ]
+            ]*/
         }
         try {
             await sendMail(messageoption)
