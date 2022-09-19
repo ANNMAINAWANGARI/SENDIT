@@ -28,6 +28,7 @@ const pool = await mssql.connect(sqlConfig)
 const parcels:Parcel[]= await(await pool.request().query(`
 SELECT * FROM ParcelsTable INNER JOIN users ON ParcelsTable.user_id=users.id WHERE destination_phone_issent='no'`)).recordset
 
+
 for(let parcel of parcels){
     twilio.messages
     .create({

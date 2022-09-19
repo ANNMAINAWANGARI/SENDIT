@@ -1,11 +1,13 @@
 import { Request, RequestHandler, Response } from "express"
-import { number } from "joi"
+import dotenv from 'dotenv'
+//import Buffer from 'buffers'
+
 import { ParcelSchema } from "../HelperFunctions/parcelValidator"
 import {v4 as uid}  from 'uuid'
 import Connection from "../HelperFunctions/dbHelpers"
 
 const db=new Connection()
-
+dotenv.config()
 interface ExtendedRequest extends Request{
     body:{
         parcel_id:string,
@@ -33,13 +35,13 @@ export const checkParcelFee=async(req:ExtendedRequest,res:Response)=>{
         let checkFee=new Promise(function(resolve,reject){
             if(Number(parcel_weight)>=0 && Number(parcel_weight)<=10){
               price = 1;
-              resolve(res.json(price));
+              resolve(price);
             }else if(Number(parcel_weight)>=11 && Number(parcel_weight)<=50){
               price=2;
-              resolve(res.json(price));
+              resolve(price);
             }else if(Number(parcel_weight)>=51 && Number(parcel_weight)<=100){
               price=3;
-              resolve(res.json(price));
+              resolve(price);
             }else{
                 const parcelMessage='Cannot send parcel of over 100kgs';
                 reject(res.json(parcelMessage));
@@ -53,6 +55,32 @@ export const checkParcelFee=async(req:ExtendedRequest,res:Response)=>{
         .catch(err => res.json(err));
     }catch(err){res.json(err)}
 }
+
+export const stkPush=async(req:ExtendedRequest,res:Response)=>{
+    try{
+        const{parcel_destination_phone}=req.body
+        const date = new Date();
+        const timestamp =
+          date.getFullYear() +
+          ("0" + (date.getMonth() + 1)).slice(-2) +
+          ("0" + date.getDate()).slice(-2) +
+          ("0" + date.getHours()).slice(-2) +
+          ("0" + date.getMinutes()).slice(-2) +
+          ("0" + date.getSeconds()).slice(-2);
+
+          const shortCode= process.env.MPESA_PAYBILL;
+          const passkey = process.env.MPESA_PASSKEY;
+          const callbackurl = process.env.CALLBACK_URL;
+
+          const password = Buffer.from (shortCode as string+ passkey + timestamp).toString(
+            "base64"
+          );
+        
+    }catch(err){
+        console.log(err)
+    }
+    }
+
 
 export const addParcel=async(req:ExtendedRequest,res:Response)=>{
     try {
@@ -142,6 +170,8 @@ export const getReceiverParcels:RequestHandler=async(req,res)=>{
     export const softDeleteParcel:RequestHandler<{parcel_id:string}>=async(req,res)=>{
         try {
             let parcel_id=req.params.parcel_id
+           
+
             const {recordset}=await db.exec('getParcel',{parcel_id})
             
             
