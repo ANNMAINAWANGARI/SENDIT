@@ -16,6 +16,11 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
 import { ModalComponent } from './modal/modal.component';
+import { EffectsModule,Actions } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { parcelReducer } from './adminParcelsState/parcel.reducer';
+import { ParcelEffect } from './adminParcelsState/parcel.effects';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -38,7 +43,10 @@ import { ModalComponent } from './modal/modal.component';
     ReactiveFormsModule,
     MatRadioModule,
     MatCardModule,
-    MatIconModule
+    StoreModule.forFeature("parcels",parcelReducer),
+    EffectsModule.forFeature([ParcelEffect]),
+    MatIconModule,
+    NgxPaginationModule
   ]
 })
 export class AdminModule { }

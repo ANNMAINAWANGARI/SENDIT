@@ -1,23 +1,27 @@
 <app-shared></app-shared>
-<div class="user-wrapper">
-    <div class="user-wrapper-input">
-        <p>Track your parcel</p>
-        <input type="text" placeholder="Track your parcel">
-    </div>
-    <div class="user-wrapper-parcels">
+
+<div *ngIf="result$.length ; else noParcels">
+  <div class="user-wrapper-input">
+    <p>Track your parcel</p>
+    <input type="text" placeholder="Track your parcel" >
+</div>
+
+<div class="user-wrapper" [ngStyle]="{display: 'flex',width:'90%',margin:'0 auto',flexWrap:'wrap',justifyContent:'center'}">
+    <div  *ngFor="let order of result$ " >
+    <div class="user-wrapper-parcels"  >
         <div class="user-parcel">
             <h3 class="parcel-type">Documents</h3>
-            <p class="parcel-id">A57880JHHFDF2HHJ</p>
+            <p class="parcel-id">{{order.parcel_id}}</p>
             <hr>
             <div class="parcel-info">
                 <div class="parcel-info-top">
                   <p>
                     <span class="parcel-info-top-to">To</span>
-                    <span class="parcel-info-top-destination">Nyeri</span>
+                    <span class="parcel-info-top-destination">{{order.parcel_destination}}</span>
                   </p>
                   <p>
                     <span class="parcel-info-top-from">From</span>
-                    <span class="parcel-info-top-destination">Nairobi</span>
+                    <span class="parcel-info-top-destination">{{order.parcel_origin}}</span>
                   </p>
                 </div>
                 <div class="parcel-info-bottom">
@@ -27,7 +31,7 @@
                       </p>
                       <p>
                         <span class="parcel-info-top-from">Item Weight</span>
-                        <span class="parcel-info-top-destination">1kg</span>
+                        <span class="parcel-info-top-destination">{{order.parcel_weight}}</span>
                       </p>
                 </div>
                 <div class="parcel-info-footer">
@@ -44,169 +48,11 @@
                 </div>
             </div>
         </div>
-        <!--item2-->
-        <div class="user-parcel">
-            <h3 class="parcel-type">Documents</h3>
-            <p class="parcel-id">A57880JHHFDF2HHJ</p>
-            <hr>
-            <div class="parcel-info">
-                <div class="parcel-info-top">
-                  <p>
-                    <span class="parcel-info-top-to">To</span>
-                    <span class="parcel-info-top-destination">Nyeri</span>
-                  </p>
-                  <p>
-                    <span class="parcel-info-top-from">From</span>
-                    <span class="parcel-info-top-destination">Nairobi</span>
-                  </p>
-                </div>
-                <div class="parcel-info-bottom">
-                    <p>
-                        <span class="parcel-info-top-to">Delivery</span>
-                        <span class="parcel-info-top-destination">G4S</span>
-                      </p>
-                      <p>
-                        <span class="parcel-info-top-from">Item Weight</span>
-                        <span class="parcel-info-top-destination">1kg</span>
-                      </p>
-                </div>
-                <div class="parcel-info-footer">
-                    <div class="parcel-info-footer-left">
-                        <p>
-                            <span class="parcel-info-top-to">Estimate</span>
-                            <span class="parcel-info-top-destination">24th Dec 2022</span>
-                          </p>
-                    </div>
-                    <div class="parcel-info-footer-right">
-                        <mat-icon class='hero-card-icon' aria-label="code-scanner-icon">qr_code_scanner</mat-icon>
-                        <mat-icon class='hero-card-icon' aria-label="sms-icon">sms</mat-icon>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--item2-->
-        <!--item3-->
-        <div class="user-parcel">
-            <h3 class="parcel-type">Documents</h3>
-            <p class="parcel-id">A57880JHHFDF2HHJ</p>
-            <hr>
-            <div class="parcel-info">
-                <div class="parcel-info-top">
-                  <p>
-                    <span class="parcel-info-top-to">To</span>
-                    <span class="parcel-info-top-destination">Nyeri</span>
-                  </p>
-                  <p>
-                    <span class="parcel-info-top-from">From</span>
-                    <span class="parcel-info-top-destination">Nairobi</span>
-                  </p>
-                </div>
-                <div class="parcel-info-bottom">
-                    <p>
-                        <span class="parcel-info-top-to">Delivery</span>
-                        <span class="parcel-info-top-destination">G4S</span>
-                      </p>
-                      <p>
-                        <span class="parcel-info-top-from">Item Weight</span>
-                        <span class="parcel-info-top-destination">1kg</span>
-                      </p>
-                </div>
-                <div class="parcel-info-footer">
-                    <div class="parcel-info-footer-left">
-                        <p>
-                            <span class="parcel-info-top-to">Estimate</span>
-                            <span class="parcel-info-top-destination">24th Dec 2022</span>
-                          </p>
-                    </div>
-                    <div class="parcel-info-footer-right">
-                        <mat-icon class='hero-card-icon' aria-label="code-scanner-icon">qr_code_scanner</mat-icon>
-                        <mat-icon class='hero-card-icon' aria-label="sms-icon">sms</mat-icon>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--item3-->
-        <!--item4-->
-        <div class="user-parcel">
-            <h3 class="parcel-type">Documents</h3>
-            <p class="parcel-id">A57880JHHFDF2HHJ</p>
-            <hr>
-            <div class="parcel-info">
-                <div class="parcel-info-top">
-                  <p>
-                    <span class="parcel-info-top-to">To</span>
-                    <span class="parcel-info-top-destination">Nyeri</span>
-                  </p>
-                  <p>
-                    <span class="parcel-info-top-from">From</span>
-                    <span class="parcel-info-top-destination">Nairobi</span>
-                  </p>
-                </div>
-                <div class="parcel-info-bottom">
-                    <p>
-                        <span class="parcel-info-top-to">Delivery</span>
-                        <span class="parcel-info-top-destination">G4S</span>
-                      </p>
-                      <p>
-                        <span class="parcel-info-top-from">Item Weight</span>
-                        <span class="parcel-info-top-destination">1kg</span>
-                      </p>
-                </div>
-                <div class="parcel-info-footer">
-                    <div class="parcel-info-footer-left">
-                        <p>
-                            <span class="parcel-info-top-to">Estimate</span>
-                            <span class="parcel-info-top-destination">24th Dec 2022</span>
-                          </p>
-                    </div>
-                    <div class="parcel-info-footer-right">
-                        <mat-icon class='hero-card-icon' aria-label="code-scanner-icon">qr_code_scanner</mat-icon>
-                        <mat-icon class='hero-card-icon' aria-label="sms-icon">sms</mat-icon>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--item4-->
-        <!--item5-->
-        <div class="user-parcel">
-            <h3 class="parcel-type">Documents</h3>
-            <p class="parcel-id">A57880JHHFDF2HHJ</p>
-            <hr>
-            <div class="parcel-info">
-                <div class="parcel-info-top">
-                  <p>
-                    <span class="parcel-info-top-to">To</span>
-                    <span class="parcel-info-top-destination">Nyeri</span>
-                  </p>
-                  <p>
-                    <span class="parcel-info-top-from">From</span>
-                    <span class="parcel-info-top-destination">Nairobi</span>
-                  </p>
-                </div>
-                <div class="parcel-info-bottom">
-                    <p>
-                        <span class="parcel-info-top-to">Delivery</span>
-                        <span class="parcel-info-top-destination">G4S</span>
-                      </p>
-                      <p>
-                        <span class="parcel-info-top-from">Item Weight</span>
-                        <span class="parcel-info-top-destination">1kg</span>
-                      </p>
-                </div>
-                <div class="parcel-info-footer">
-                    <div class="parcel-info-footer-left">
-                        <p>
-                            <span class="parcel-info-top-to">Estimate</span>
-                            <span class="parcel-info-top-destination">24th Dec 2022</span>
-                          </p>
-                    </div>
-                    <div class="parcel-info-footer-right">
-                        <mat-icon class='hero-card-icon' aria-label="code-scanner-icon">qr_code_scanner</mat-icon>
-                        <mat-icon class='hero-card-icon' aria-label="sms-icon">sms</mat-icon>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--item5-->
+        
     </div>
 </div>
+</div>
+</div>
+<ng-template #noParcels>
+  <h3>No parcels available!!</h3>
+</ng-template>

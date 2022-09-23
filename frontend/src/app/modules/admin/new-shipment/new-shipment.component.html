@@ -6,13 +6,13 @@
                 <p>Add Shipment</p>
             </ng-template>
             <div class="stepper-1-content">
-                <form [formGroup]="shipmentForm" (ngSubmit)="feeCheck()">
+                <form [formGroup]="shipmentForm" (ngSubmit)="onAdd()">
                    <!-- <label [ngStyle]="{fontSize: '20px',fontWeight:'bold',paddingTop:'10px'}">What are you sending? </label>-->
-                    <p *ngIf="!shipmentForm.get('shipmentType')?.valid && shipmentForm.get('shipmentType')?.touched" [ngStyle]="{color: 'red'}">
+                    <p *ngIf="!shipmentForm.get('parcel_type')?.valid && shipmentForm.get('parcel_type')?.touched" [ngStyle]="{color: 'red'}">
                         Please enter a valid email</p>
                     <div [ngStyle]="{width: '100%',display:'flex','align-items':'center','justify-content':'space-between'}">
                         
-                        <mat-radio-group formControlName="shipmentType">
+                        <mat-radio-group formControlName="parcel_type">
                             <mat-radio-button value="fragile" class="shipment-type-radio">
                                 <mat-card>
                                     <mat-icon>wine_bar</mat-icon>
@@ -36,34 +36,34 @@
                         </div>
                         <div [ngStyle]="{display:'flex',flexDirection:'column',marginTop:'20px'}">
                         <mat-form-field appearance="outline">
-                            <p *ngIf="!shipmentForm.get('fromLocation')?.valid && shipmentForm.get('fromLocation')?.touched" [ngStyle]="{color: 'red'}">
+                            <p *ngIf="!shipmentForm.get('parcel_destination')?.valid && shipmentForm.get('parcel_destination')?.touched" [ngStyle]="{color: 'red'}">
                                 Please enter a valid location</p>
-                            <input matInput type='text' placeholder='FromLocation'formControlName="fromLocation">
+                            <input matInput type='text' placeholder='FromLocation'formControlName="parcel_destination">
                         </mat-form-field>
                         <mat-form-field appearance="outline">
-                            <p *ngIf="!shipmentForm.get('toLocation')?.valid && shipmentForm.get('toLocation')?.touched" [ngStyle]="{color: 'red'}">
+                            <p *ngIf="!shipmentForm.get('parcel_origin')?.valid && shipmentForm.get('parcel_origin')?.touched" [ngStyle]="{color: 'red'}">
                                 Please enter a valid location</p>
-                            <input matInput type='text' placeholder='ToLocation'formControlName="toLocation">
+                            <input matInput type='text' placeholder='ToLocation'formControlName="parcel_origin">
                         </mat-form-field>
                         <mat-form-field appearance="outline">
-                            <p *ngIf="!shipmentForm.get('weight')?.valid && shipmentForm.get('weight')?.touched" [ngStyle]="{color: 'red'}">
+                            <p *ngIf="!shipmentForm.get('parcel_weight')?.valid && shipmentForm.get('parcel_weight')?.touched" [ngStyle]="{color: 'red'}">
                                 Please enter a valid weight</p>
-                            <input matInput type='number' placeholder='Weight'formControlName="weight">
+                            <input matInput type='number' placeholder='Weight'formControlName="parcel_weight">
                         </mat-form-field>
                         <mat-form-field appearance="outline">
-                            <p *ngIf="!shipmentForm.get('toEmail')?.valid && shipmentForm.get('toEmail')?.touched" [ngStyle]="{color: 'red'}">
-                                Please enter a valid email</p>
-                            <input matInput type='email' placeholder='ToEmail'formControlName="toEmail">
+                            <!-- <p *ngIf="!shipmentForm.get('toEmail')?.valid && shipmentForm.get('toEmail')?.touched" [ngStyle]="{color: 'red'}">
+                                Please enter a valid email</p> -->
+                            <input matInput type='text' placeholder='ToNumber'formControlName="parcel_destination_phone">
                         </mat-form-field>
                         <mat-form-field appearance="outline">
-                            <p *ngIf="!shipmentForm.get('FromEmail')?.valid && shipmentForm.get('FromEmail')?.touched" [ngStyle]="{color: 'red'}">
-                                Please enter a valid email</p>
-                            <input matInput type='email' placeholder='FromEmail'formControlName="FromEmail">
+                            <!-- <p *ngIf="!shipmentForm.get('FromEmail')?.valid && shipmentForm.get('FromEmail')?.touched" [ngStyle]="{color: 'red'}">
+                                Please enter a valid email</p> -->
+                            <input matInput type='text' placeholder='FromNumber'formControlName="parcel_origin_phone">
                         </mat-form-field>
                         <mat-form-field appearance="outline">
-                            <p *ngIf="!shipmentForm.get('status')?.valid && shipmentForm.get('status')?.touched" [ngStyle]="{color: 'red'}">
+                            <p *ngIf="!shipmentForm.get('parcel_status')?.valid && shipmentForm.get('parcel_status')?.touched" [ngStyle]="{color: 'red'}">
                                 Please enter the status</p>
-                            <input matInput type='text' placeholder='Status'formControlName="status">
+                            <input matInput type='text' placeholder='Status'formControlName="parcel_status">
                         </mat-form-field>
 
                         
