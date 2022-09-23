@@ -4,12 +4,13 @@ import { AdminComponent } from './admin.component';
 import { ParcelsComponent } from './parcels/parcels.component';
 import { CustomersComponent } from './customers/customers.component';
 import { NewShipmentComponent } from './new-shipment/new-shipment.component';
+import { LoginGuard } from 'src/app/guards/login.guard';
 const routes: Routes = [{path:'', children:[
-  {path:'admin',component:AdminComponent,children:[
-  {path:'',component:ParcelsComponent},
-  {path:'parcels',component:ParcelsComponent},
-  {path:'customers',component:CustomersComponent},
-  {path:'newShipment',component:NewShipmentComponent}]}]},
+  {path:'admin',component:AdminComponent,canActivate: [LoginGuard],children:[
+  {path:'',component:ParcelsComponent,canActivate: [LoginGuard]},
+  {path:'parcels',component:ParcelsComponent,canActivate: [LoginGuard]},
+  {path:'customers',component:CustomersComponent,canActivate: [LoginGuard]},
+  {path:'newShipment',component:NewShipmentComponent,canActivate: [LoginGuard]}]}]},
 ];
 
 @NgModule({

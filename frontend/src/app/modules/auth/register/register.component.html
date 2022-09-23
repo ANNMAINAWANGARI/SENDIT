@@ -1,21 +1,68 @@
-<form class="signup-form">
+<div [ngStyle]="{'width': '60%','margin':'20px auto','text-align':'center'}">
+<p *ngIf="successMessage" [ngStyle]="{'backgroundColor': 'green'}">{{successMessage}}</p>
+<p *ngIf="errorMessage"   [ngStyle]="{'backgroundColor': 'red'}">{{errorMessage}} Error</p>
+</div>
+<form class="signup-form" [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="signup-form-inner-div">
     <div class="signup-form-header">
         <h3>REGISTER</h3>
         <span>X</span>
     </div>
-    <p class="signup-form-input-container">
-        <input type="text" name="username" placeholder='username'/>
+    <div class="signup-form-input-container">
+        <div *ngIf="!form.get('firstName')?.valid && form.get('firstName')?.touched" class="error">
+            
+              *Please enter your first name
+            
+          </div>
+        <input type="text" name="firstName" placeholder='firstName' formControlName="firstName"/>
+    </div>
+    <div class="signup-form-input-container">
+        <div *ngIf="!form.get('lastName')?.valid && form.get('lastName')?.touched" class="error">
+            
+              *Please enter your last name
+            
+          </div>
+        <input type="text" name="lastName" placeholder='lastName' formControlName="lastName"/>
+        </div>
+    <div class="signup-form-input-container">
+        <div *ngIf="!form.get('email')!.valid && form.get('email')!.touched">
+            <p class="error" *ngIf="!form.get('email')!.errors!['required']">
+              *Please enter your email
+            </p>
+            <p class="error" *ngIf="!form.get('email')!.errors!['email']">
+              *Please enter a valid email
+            </p>
+        </div>
+        <input type="email" name="email" placeholder='email' formControlName="email"/>
+    </div>
+    <div class="signup-form-input-container">
+        <div *ngIf="!form.get('password')!.valid && form.get('password')!.touched">
+        <p class="error" *ngIf="form.get('password')!.errors!['required']">
+          *Please enter your password
+        </p>
+        <p class="error" *ngIf="form.get('password')!.errors!['special']">
+          *Please enter a special character in your password
+        </p>
+        <p class="error" *ngIf="form.get('password')!.errors!['capital']">
+          *Please enter atleast 1 special character in your password
+        </p>
+        <p class="error" *ngIf="form.get('password')!.errors!['number']">
+            *Please enter atleast 1 number in your password
+        </p>
+        <p *ngIf="checkMinimum()">*Password should have 8 characters or more</p>
+      </div>
+        <input type="password" name="password" placeholder='password' formControlName="password"/>
+    </div>
+    <button  class="signup-submit" [disabled]="!form.valid">REGISTER</button>
+    <p [ngStyle]="{'font-size': '18px','text-align':'left'}">
+        Have an account?
+        <span [ngStyle]="{'color': 'orange','cursor':'pointer'}" (click) ="goToLogin()">Login</span>
     </p>
-    <p class="signup-form-input-container">
-        <input type="email" name="email" placeholder='email'/>
-    </p>
-    <p class="signup-form-input-container">
-        <input type="password" name="password" placeholder='password'/>
-    </p>
-    <button type="submit" class="signup-submit">REGISTER</button>
-    <p [ngStyle]="{'font-size': '18px','text-align':'left'}">Have an account?<span [ngStyle]="{'color': 'orange','cursor':'pointer'}">Login</span></p>
-    <button class="google-signup"><img src='../../../../assets/google.png' alt='google-image' class='google-image'/>Sign up with Google</button>
-    
+    <div class="google-signup">
+        <img src='../../../../assets/google.png' alt='google-image' class='google-image'/>
+        Sign up with Google
+    </div>
     </div>
 </form>
+
+

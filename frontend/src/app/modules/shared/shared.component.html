@@ -8,8 +8,14 @@
         <li class="link" routerLink="/user/user" routerLinkActive="router-link-active">User</li>
         <li class="link" routerLink="/admin/admin" routerLinkActive="router-link-active">Admin</li>
     </ul>
+    <div *ngIf="state!=true;else logout">
     <div class="header-buttons">
         <button class="login-button"  a [routerLink]="['/auth/login']">LOGIN</button>
         <button class="register-button"  a [routerLink]="['/auth/register']">REGISTER</button>
     </div>
+    </div>
+
+    <ng-template #logout>
+        <button class="login-button"  [ngStyle]="{padding: '10px',border:'none',borderRadius:'5px',cursor:'pointer'}" a [routerLink]="['/auth/login']">LOGOUT</button>
+      </ng-template>
 </div>
