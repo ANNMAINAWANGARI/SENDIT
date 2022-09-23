@@ -157,13 +157,15 @@ export const getReceiverParcels:RequestHandler=async(req,res)=>{
     
     if(!recordset[0]){
         res.json({message:"You have not received any parcels"})
-        res.status(201).json(recordset)
+        
+    }else{
+        res.json(recordset)
     }
+  
     } catch (error) {
     res.json({error})
         
     }
-    
     }
 
     //soft delete a parcel
