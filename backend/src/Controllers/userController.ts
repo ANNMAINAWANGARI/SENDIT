@@ -44,14 +44,19 @@ export const RegisterUser=async(req:CustomRequest,res:Response)=>{
                     const{password, ...rest}=item
                     return rest
                 })      
-            const token =jwt.sign(payload[0] ,process.env.KEY as string,{expiresIn:'3600s'})
-            res.json({
+            const token =jwt.sign(payload[0] ,process.env.KEY as string,{expiresIn:'36000000s'})
+            res.status(200).json({
                 message:'Registered successfully',
-                token
+                token,
+                payload:payload[0].role,
+                userId:payload[0].id
             })
+
+    
+            //res.status(400).json({message:'Bad Gateway'})
             //res.json({message:'You have registered successfully'})
-    }catch(err){
-        res.json({err})
+    }catch(error:any){
+        res.json({messageError: error.code})
     }
     }
 
@@ -61,7 +66,7 @@ export const RegisterUser=async(req:CustomRequest,res:Response)=>{
             const {email, password }= req.body
             const pool =await mssql.connect(sqlConfig)
             const {error , value}= UserSchema2.validate(req.body)
-            const checked_token = req.headers['token'] as string
+            const checked_token = req.headers['usertoken'] as string
             if(error){
                 return res.json({error:error.details[0].message})
                         }
@@ -81,11 +86,18 @@ export const RegisterUser=async(req:CustomRequest,res:Response)=>{
                     const{password, ...rest}=item
                     return rest
                 })
+                console.log(req.headers)
                 if(!checked_token){
-                    const token =jwt.sign(payload[0] ,process.env.KEY as string,{expiresIn:'3600s'})
+                    const token =jwt.sign(payload[0] ,process.env.KEY as string,{expiresIn:'360000000s'})
                 res.json({
+                    user:{
+                        role:payload[0].role,
+                        email:payload[0].email,
+                        firstName:payload[0].firstName,
+                        userId:payload[0].id
+                    },
                     message:'Logged in',
-                    token
+                    token,
                 })
                 }else{
                     res.json({
